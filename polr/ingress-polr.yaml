@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-polr
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: le-dns
+spec:
+  rules:
+  - host: eblm.ca
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: polr
+            port:
+              number: 8080
+  tls:
+    - hosts:
+      - eblm.ca
+      secretName: cloudflare-api-token

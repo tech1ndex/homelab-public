@@ -1,0 +1,75 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    app: polr
+  name: polr-pvc
+  namespace: polr
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: local-path
+  resources:
+    requests:
+      storage: 2Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: polr
+  name: polr
+spec:
+  ports:
+    - name: "8083"
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: polr
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: polr
+  labels: 
+    app: polr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: polr
+  template:
+    metadata:
+      labels:
+        app: polr
+    spec:
+      containers:
+        - env:
+            - name: DB_HOST
+              value: mariadb
+            - name: DB_DATABASE
+              value: polr
+            - name: DB_USERNAME
+              value: root
+            - name: DB_PASSWORD
+              value: jfkapo-skhf7ej-ksfuhlw
+            - name: APP_ADDRESS
+              value: eblm.ca
+            - name: ADMIN_USERNAME
+              value: bajadav
+            - name: ADMIN_PASSWORD
+              value: k8D7xj-Uy524-hV8d*
+          image: ajanvier/polr
+          name: polr
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - mountPath: /config
+              name: polr
+      restartPolicy: Always
+      volumes:
+        - name: polr
+          persistentVolumeClaim:
+            claimName: polr-pvc
