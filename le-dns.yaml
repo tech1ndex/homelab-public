@@ -10,7 +10,7 @@ spec:
     solvers:
     - dns01:
         cloudflare:
-          email: bajada.victor@gmail.com
+          email: YOUR_EMAIL
           apiTokenSecretRef:
             name: cloudflare-api-token
             key: api-token
