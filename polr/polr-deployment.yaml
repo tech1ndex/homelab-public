@@ -54,13 +54,13 @@ spec:
             - name: DB_USERNAME
               value: root
             - name: DB_PASSWORD
-              value: jfkapo-skhf7ej-ksfuhlw
+              value: PASSWORD
             - name: APP_ADDRESS
-              value: eblm.ca
+              value: YOUR_POLR_URL
             - name: ADMIN_USERNAME
-              value: bajadav
+              value: ADMIN
             - name: ADMIN_PASSWORD
-              value: k8D7xj-Uy524-hV8d*
+              value: PASSWORD
           image: ajanvier/polr
           name: polr
           ports:
