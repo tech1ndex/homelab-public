@@ -18,5 +18,5 @@ spec:
       protocol: TCP
       targetPort: 443
   externalIPs:
-    - "192.168.1.9"
+    - "EXTERNAL_IP"
   type: LoadBalancer
