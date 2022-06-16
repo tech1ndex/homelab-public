@@ -66,7 +66,7 @@ spec:
             path: config.yaml
       - name: data
         hostPath: 
-          path: /home/bajadav/.cloudflared
+          path: ~/.cloudflared
           type: DirectoryOrCreate
 ---
 # This ConfigMap is just a way to define the cloudflared config.yaml file in k8s.
@@ -97,8 +97,8 @@ data:
     # from the internet to cloudflared, run `cloudflared tunnel route dns <tunnel> <hostname>`.
     # E.g. `cloudflared tunnel route dns example-tunnel tunnel.example.com`.
     ingress:
-      - hostname: '*.eblm.ca'
-        service: https://192.168.1.9
+      - hostname: '*.YOUR_DOMAIN.COM'
+        service: https://IP_OF_INGRESS
         originRequest:
           noTLSVerify: true
       - service: http_status:404
