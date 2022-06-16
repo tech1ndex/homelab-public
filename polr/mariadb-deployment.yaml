@@ -48,7 +48,7 @@ spec:
       containers:
         - env:
             - name: MYSQL_ROOT_PASSWORD
-              value: jfkapo-skhf7ej-ksfuhlw
+              value: PASSWORD
             - name: MYSQL_DATABASE
               value: polr
           image: mariadb:latest
